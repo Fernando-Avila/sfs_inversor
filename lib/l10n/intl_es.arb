@@ -1,0 +1,162 @@
+{
+  "@@locale": "es",
+  "pageHomeListTitle": "Some localized strings:",
+  "pageHomeSamplePlaceholder": "Welcome {name}",
+  "pageHomeSamplePlaceholdersOrdered": "My name is {lastName}, {firstName} {lastName}",
+  "@pageHomeSamplePlaceholdersOrdered": {
+    "placeholders": {
+      "firstName": {},
+      "lastName": {}
+    }
+  },
+  "pageHomeSamplePlural": "{howMany, plural, one{You have 1 message} other{You have {howMany} messages}}",
+  "@pageHomeSamplePlural": {
+    "placeholders": {
+      "howMany": {
+        "type": "int"
+      }
+    }
+  },
+  "next": "Siguiente",
+  "@next": {
+    "description": "Texto simple siguiente"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Texto simple Cancelar"
+  },
+  "skip": "Omitir",
+  "@skip": {
+    "description": "Texto simple siguiente"
+  },
+  "continu": "Continuar",
+  "@continu": {
+    "description": "Texto simple Continuar"
+  },
+  "welcome": "Bienvenido",
+  "@welcome": {
+    "description": "Texto simple Bienvenido"
+  },
+
+"login": "Inicia sesión",
+"@login": {
+  "description": "Texto simple Ingresar"
+},
+"forgotpass": "¿Olvido su contraseña?",
+"@forgotpass": {
+  "description": "Texto simple Olvido su contraseña"
+},
+"notaccount": "¿No tienes cuenta?",
+"@notaccount": {
+  "description": "Texto simple No tienes cuenta"
+},
+"singup": "Registrate",
+"@singup": {
+  "description": "Texto simple Registrate"
+},
+"register": "Registro",
+"@register": {
+  "description": "Texto simple Registro"
+},
+"signup": "Registrarse",
+"@signup": {
+  "description": "Texto simple Registrarse"
+},
+"mail": "Correo electrónico",
+"@mail": {
+  "description": "Texto simple email"
+},
+"fieldrequired": "Campo Requerido",
+"@fieldrequired": {
+  "description": "Texto simple Campo Requerido"
+},
+"invalidmail": "Correo inválido",
+"@invalidmail": {
+  "description": "Texto simple correo inválido"
+},
+"names": "Nombres",
+"@names": {
+  "description": "Texto simple correo inválido"
+},
+"lastnames": "Apellidos",
+"@lastnames": {
+  "description": "Texto simple correo inválido"
+},
+
+"phone": "Contacto",
+"@phone": {
+  "description": "Texto simple cContacto"
+},
+
+"confirmpassword": "Confirmar Contraseña",
+"@confirmpassword": {
+  "description": "Texto simple Confirmar Contraseña"
+},
+"passworddontmatch": "Las contraseñas no coinciden",
+"@passworddontmatch": {
+  "description": "Texto simple Passwords don't match "
+},
+
+"minimumpassword": "8 caracteres mínimo",
+"@minimumpassword": {
+  "description": "Texto simple 8 caracteres mínimo"
+},
+"password": "Contraseña",
+"@password": {
+  "description": "Texto simple contraseña"
+},
+"accouninvited": "Cuenta Invitado",
+"@accouninvited": {
+  "description": "Texto simple Cuenta Invitado"
+},
+"or": "O",
+"@or": {
+  "description": "Texto simple O"
+},
+
+"swipeterms": "Desliza para revisar los términos y condiciones",
+"@swipeterms": {
+  "description": "Texto simple Desliza para revisar los términos y condiciones"
+},
+
+"acepttermsandconditions": "He leído y estoy de acuerdo con los términos y condiciones",
+"@acepttermsandconditions": {
+  "description": "Texto simple Revisar términos y condiciones"
+},
+
+"termconditions": "Términos y condiciones",
+"@termconditions": {
+  "description": "Texto simple Términos y condiciones"
+},
+"alreadyregistered": "¿Ya estás registrado?",
+"@alreadyregistered": {
+  "description": "Texto simple ¿Ya estás registrado?"
+},
+
+  "pageHomeSampleTotalAmount": "Total: {total}",
+  "@pageHomeSampleTotalAmount": {
+    "placeholders": {
+      "total": {
+        "type": "double",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "€",
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+  "pageHomeSampleCurrentDateTime": "Date: {date} Time: {time}",
+  "@pageHomeSampleCurrentDateTime": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMd"
+      },
+      "time": {
+        "type": "DateTime",
+        "format": "Hm"
+      }
+    }
+  }
+}
