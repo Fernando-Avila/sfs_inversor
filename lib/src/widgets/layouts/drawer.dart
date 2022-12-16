@@ -1,11 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:sfs_inversor/generated/l10n.dart';
 import 'package:sfs_inversor/src/bloc/user/user_bloc.dart';
 import 'package:sfs_inversor/src/global/routes.dart';
 import 'package:sfs_inversor/src/styles/custom_styles.dart';
 import 'package:sfs_inversor/src/widgets/layouts/photo.dart';
 import 'package:sfs_inversor/src/widgets/widgettext.dart';
+
+final drawerController = ZoomDrawerController();
+void drawercontrol() {
+  if (drawerController.isOpen!()) {
+    drawerController.close!();
+  } else {
+    drawerController.open!();
+  }
+}
+
+class ZoomDrawerZ extends StatelessWidget {
+  const ZoomDrawerZ({Key? key, required this.child}) : super(key: key);
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return ZoomDrawer(
+      controller: drawerController,
+      menuScreen: DrawerC(),
+      borderRadius: 24,
+      mainScreenScale: 0.08,
+      showShadow: true,
+      androidCloseOnBackTap: true,
+      mainScreenTapClose: true,
+      openCurve: Curves.easeInOut,
+      angle: 0.0,
+      style: DrawerStyle.defaultStyle,
+      menuBackgroundColor: EstiloApp.colorwhite,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.9),
+          spreadRadius: 4,
+          blurRadius: 6,
+          offset: const Offset(0, 3), // changes position of shadow
+        ),
+      ],
+      // drawerShadowsBackgroundColor: EstiloApp.primarypurple,
+      slideWidth: MediaQuery.of(context).size.width * 0.6,
+      mainScreen: child,
+    );
+  }
+}
 
 class DrawerC extends StatelessWidget {
   const DrawerC({Key? key}) : super(key: key);
@@ -15,9 +58,9 @@ class DrawerC extends StatelessWidget {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         return Container(
-          width: MediaQuery.of(context).size.width / 1.5,
+          width: MediaQuery.of(context).size.width * 0.6,
           padding: EdgeInsets.zero,
-          color: Theme.of(context).primaryColor,
+          //  color: Theme.of(context).primaryColor,
           child: state.authtoken != null
               ? Column(
                   children: [
@@ -82,10 +125,12 @@ class DrawerC extends StatelessWidget {
                                       BlendMode.dstATop),
                                   image: const AssetImage(
                                       'assets/icons/degradado/iconlogo.png'))),
-                          onDetailsPressed: () => Navigator.push(
-                              context,
-                              Routes().Push(Routes().login,
-                                  AnimatedPage.slideright, 300)),
+                          onDetailsPressed: () {
+                            Navigator.push(
+                                context,
+                                Routes().Push(Routes().login,
+                                    AnimatedPage.slideright, 300));
+                          },
                           accountEmail: null,
                         )),
                     btn(3, 'assets/icons/degradado/iconsolicitud.png', 'Cuenta',

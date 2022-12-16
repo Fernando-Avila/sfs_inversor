@@ -13,8 +13,8 @@ class EstiloApp {
     400: const Color.fromARGB(199, 227, 53, 91),
     500: const Color.fromARGB(199, 227, 53, 91),
     600: const Color.fromARGB(199, 227, 53, 91),
-    700: const Color.fromARGB(199, 227, 53, 91),
-    800: const Color.fromARGB(155, 227, 53, 91),
+    700: Color.fromARGB(103, 227, 53, 91),
+    800: Color.fromARGB(10, 227, 53, 91),
     900: const Color.fromARGB(200, 227, 53, 91),
     1000: Color(_primarypinkValue),
   });

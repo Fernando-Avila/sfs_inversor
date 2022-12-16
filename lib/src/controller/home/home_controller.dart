@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sfs_inversor/src/models/investment_model.dart';
 import 'package:sfs_inversor/src/models/notifictions_model.dart';
 
 class MyHeader {
@@ -12,9 +13,11 @@ class MyHeader {
   final bool visible;
 }
 
-class SliverScrollController {
+class HomeScrollController {
+  late BuildContext context;
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   //List of products - Lista de productos
-  late List<NotificationCategory> listCategory;
+  late List<Investment> listInvest = investments;
 
   //list of offSet values - Lista de valores offSet de los item
   List<double> listOffSetItemHeader = [];
@@ -37,51 +40,17 @@ class SliverScrollController {
 
   // To have overall control of scrolling - To have overall control of scrolling
   late ScrollController scrollControllerGlobally;
-
+  bool iss = false;
   // Valor que indica si el encabezado es visible
   // Value that indicates if the header is visible
   final visibleHeader = ValueNotifier(false);
 
-  void loadDataRandom() {
-    final notificationsTwo = [...notifications];
-    final notificationstwo = [...notifications];
-    final notificationsFour = [...notifications];
-
-    notificationsTwo.shuffle();
-    notificationstwo.shuffle();
-    notificationsFour.shuffle();
-
-    listCategory = [
-      NotificationCategory(
-        category: 'Order Again',
-        notifications: notifications,
-      ),
-      NotificationCategory(
-        category: 'Picked For You',
-        notifications: notificationsTwo,
-      ),
-      NotificationCategory(
-        category: 'Startes',
-        notifications: notificationstwo,
-      ),
-      NotificationCategory(
-        category: 'Gimpub Sushi',
-        notifications: notificationsFour,
-      ),
-    ];
-  }
-
   void init() {
-    loadDataRandom();
-    listOffSetItemHeader =
-        List.generate(listCategory.length, (index) => index.toDouble());
-
     scrollControllerGlobally = ScrollController();
     scrollControllerItemHeader = ScrollController();
-
-    headerNotifier.addListener(_listenHeaderNotifier);
     scrollControllerGlobally.addListener(_listenToScrollChange);
     visibleHeader.addListener(_listenVisibleHeader);
+    visibleHeader.addListener(() => iss = visibleHeader.value);
   }
 
   void _listenVisibleHeader() {
@@ -93,14 +62,6 @@ class SliverScrollController {
   void dispose() {
     scrollControllerItemHeader.dispose();
     scrollControllerGlobally.dispose();
-  }
-
-  void _listenHeaderNotifier() {
-    if (visibleHeader.value) {
-      for (var i = 0; i < listCategory.length; i++) {
-        scrollAnimationHorizontal(index: i);
-      }
-    }
   }
 
   void _listenToScrollChange() {

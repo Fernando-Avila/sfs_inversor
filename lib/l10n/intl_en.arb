@@ -17,6 +17,25 @@
       }
     }
   },
+
+  "invest": "Invest",
+"@invest": {
+  "description": "Texto simple Invest"
+},
+
+"id": "ID",
+"@id": {
+  "description": "Texto simple id"
+},
+"amount": "Amount",
+"@amount": {
+  "description": "Texto simple Amount"
+},
+"tir": "% Interest",
+"@tir": {
+  "description": "Texto simple % Interes"
+},
+
   "next": "Next",
   "@next": {
     "description": "Simple Text next"
@@ -132,15 +151,48 @@
 "@alreadyregistered": {
   "description": "Texto simple Already registered?"
 },
-
-  "pageHomeSampleTotalAmount": "Total: {total}",
+"notificationSamplePlural": "{howMany, plural, one{Notification} other{Notifications}}",
+"@notificationSamplePlural": {
+  "placeholders": {
+    "howMany": {
+      "type": "int"
+    }
+  }
+},
+  "pageHomeSampleTotalAmount": " {total}",
   "@pageHomeSampleTotalAmount": {
     "placeholders": {
       "total": {
         "type": "double",
         "format": "currency",
         "optionalParameters": {
-          "symbol": "€",
+          "symbol": "$",
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+  "remain": "Remain {total} ",
+  "@remain": {
+    "placeholders": {
+      "total": {
+        "type": "double",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "$",
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+  "percentvalue": "{percent} %",
+  "@percentvalue": {
+    "placeholders": {
+      "percent": {
+        "type": "double",
+        
+        "optionalParameters": {
+          "symbol": "%",
           "decimalDigits": 2
         }
       }

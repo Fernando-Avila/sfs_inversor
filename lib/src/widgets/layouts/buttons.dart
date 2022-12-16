@@ -122,6 +122,34 @@ class BtnDegraded extends StatelessWidget {
   }
 }
 
+class BtnPink extends StatelessWidget {
+  final Function()? metod;
+  final Widget widget;
+  double? width;
+  double? height;
+  BtnPink({Key? key, this.metod, required this.widget, this.width, this.height})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(60),
+      splashColor: EstiloApp.primarypink,
+      onTap: metod,
+      child: Container(
+        width:
+            width != null ? MediaQuery.of(context).size.width * width! : null,
+        height: height ?? null,
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        decoration: BoxDecoration(
+            color: EstiloApp.primarypink,
+            boxShadow: kElevationToShadow[9],
+            borderRadius: BorderRadius.circular(6)),
+        child: Center(child: widget),
+      ),
+    );
+  }
+}
+
 class BtnDegraded2 extends StatelessWidget {
   final Function() metod;
   final Widget widget;

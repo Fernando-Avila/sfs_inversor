@@ -133,19 +133,76 @@
   "description": "Texto simple ¿Ya estás registrado?"
 },
 
-  "pageHomeSampleTotalAmount": "Total: {total}",
+"notificationSamplePlural": "{howMany, plural, one{Notificación} other{Notificaciones}}",
+"@notificationSamplePlural": {
+  "placeholders": {
+    "howMany": {
+      "type": "int"
+    }
+  }
+},
+
+"invest": "Invertir",
+"@invest": {
+  "description": "Texto simple Invertir"
+},
+"id": "ID",
+"@id": {
+  "description": "Texto simple id"
+},
+
+"amount": "Monto",
+"@amount": {
+  "description": "Texto simple Monto"
+},
+"tir": "% Interés",
+"@tir": {
+  "description": "Texto simple % Interes"
+},
+
+
+
+  "pageHomeSampleTotalAmount": " {total}",
   "@pageHomeSampleTotalAmount": {
     "placeholders": {
       "total": {
         "type": "double",
         "format": "currency",
         "optionalParameters": {
-          "symbol": "€",
+          "symbol": "$",
           "decimalDigits": 2
         }
       }
     }
   },
+  "remain": "Quedán {total} ",
+  "@remain": {
+    "placeholders": {
+      "total": {
+        "type": "double",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "$",
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+
+  "percentvalue": "{percent} %",
+  "@percentvalue": {
+    "placeholders": {
+      "percent": {
+        "type": "double",        
+        "optionalParameters": {
+          "symbol": "%",
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+
+
   "pageHomeSampleCurrentDateTime": "Date: {date} Time: {time}",
   "@pageHomeSampleCurrentDateTime": {
     "placeholders": {

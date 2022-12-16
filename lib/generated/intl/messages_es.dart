@@ -20,17 +20,24 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
-  static String m0(date, time) => "Date: ${date} Time: ${time}";
+  static String m0(howMany) =>
+      "${Intl.plural(howMany, one: 'Notificación', other: 'Notificaciones')}";
 
-  static String m1(name) => "Welcome ${name}";
+  static String m1(date, time) => "Date: ${date} Time: ${time}";
 
-  static String m2(firstName, lastName) =>
+  static String m2(name) => "Welcome ${name}";
+
+  static String m3(firstName, lastName) =>
       "My name is ${lastName}, ${firstName} ${lastName}";
 
-  static String m3(howMany) =>
+  static String m4(howMany) =>
       "${Intl.plural(howMany, one: 'You have 1 message', other: 'You have ${howMany} messages')}";
 
-  static String m4(total) => "Total: ${total}";
+  static String m5(total) => " ${total}";
+
+  static String m6(percent) => "${percent} %";
+
+  static String m7(total) => "Quedán ${total} ";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -40,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "He leído y estoy de acuerdo con los términos y condiciones"),
         "alreadyregistered":
             MessageLookupByLibrary.simpleMessage("¿Ya estás registrado?"),
+        "amount": MessageLookupByLibrary.simpleMessage("Monto"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "confirmpassword":
             MessageLookupByLibrary.simpleMessage("Confirmar Contraseña"),
@@ -48,7 +56,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Campo Requerido"),
         "forgotpass":
             MessageLookupByLibrary.simpleMessage("¿Olvido su contraseña?"),
+        "id": MessageLookupByLibrary.simpleMessage("ID"),
         "invalidmail": MessageLookupByLibrary.simpleMessage("Correo inválido"),
+        "invest": MessageLookupByLibrary.simpleMessage("Invertir"),
         "lastnames": MessageLookupByLibrary.simpleMessage("Apellidos"),
         "login": MessageLookupByLibrary.simpleMessage("Inicia sesión"),
         "mail": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
@@ -58,19 +68,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Siguiente"),
         "notaccount":
             MessageLookupByLibrary.simpleMessage("¿No tienes cuenta?"),
+        "notificationSamplePlural": m0,
         "or": MessageLookupByLibrary.simpleMessage("O"),
         "pageHomeListTitle":
             MessageLookupByLibrary.simpleMessage("Some localized strings:"),
-        "pageHomeSampleCurrentDateTime": m0,
-        "pageHomeSamplePlaceholder": m1,
-        "pageHomeSamplePlaceholdersOrdered": m2,
-        "pageHomeSamplePlural": m3,
-        "pageHomeSampleTotalAmount": m4,
+        "pageHomeSampleCurrentDateTime": m1,
+        "pageHomeSamplePlaceholder": m2,
+        "pageHomeSamplePlaceholdersOrdered": m3,
+        "pageHomeSamplePlural": m4,
+        "pageHomeSampleTotalAmount": m5,
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passworddontmatch": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
+        "percentvalue": m6,
         "phone": MessageLookupByLibrary.simpleMessage("Contacto"),
         "register": MessageLookupByLibrary.simpleMessage("Registro"),
+        "remain": m7,
         "signup": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "singup": MessageLookupByLibrary.simpleMessage("Registrate"),
         "skip": MessageLookupByLibrary.simpleMessage("Omitir"),
@@ -78,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Desliza para revisar los términos y condiciones"),
         "termconditions":
             MessageLookupByLibrary.simpleMessage("Términos y condiciones"),
+        "tir": MessageLookupByLibrary.simpleMessage("% Interés"),
         "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido")
       };
 }

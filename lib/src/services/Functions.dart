@@ -28,3 +28,13 @@ String? passconfirm(String value, context, String pass, String passverify) {
   //if (!point) return S.of(context).invalidmail;
   return null;
 }
+
+double percent(max, value) {
+  double val = (value / max) * 100;
+  return val * 0.01;
+}
+
+double diference(max, value) {
+  double val = max - value + 0.0;
+  return val;
+}

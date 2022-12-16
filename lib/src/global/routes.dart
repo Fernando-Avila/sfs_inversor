@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sfs_inversor/src/pages/Invest/firstinvest.dart';
 import 'package:sfs_inversor/src/pages/account/account.dart';
 import 'package:sfs_inversor/src/pages/auth/login.dart';
 import 'package:sfs_inversor/src/pages/auth/register.dart';
@@ -32,6 +33,7 @@ class Routes {
   String account = '/account';
   String notification = '/notification';
   String splash = '/splash';
+  String firstinvest = '/firstinvest';
   Map<String, WidgetBuilder> routes() {
     return {
       SplashScreen.id: (context) => SplashScreen(),
@@ -44,6 +46,7 @@ class Routes {
       account: (context) => Account(),
       notification: (context) => Notifications(),
       splash: (context) => SplashScreen(),
+      firstinvest: (context) => Firstinvest(),
     };
   }
 
@@ -59,6 +62,7 @@ class Routes {
       account: Account(),
       notification: Notifications(),
       splash: SplashScreen(),
+      firstinvest: Firstinvest(),
     };
     return map[page] ?? Intro();
   }

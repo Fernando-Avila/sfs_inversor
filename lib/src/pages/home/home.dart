@@ -1,7 +1,18 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sfs_inversor/generated/l10n.dart';
+import 'package:sfs_inversor/src/controller/home/home_controller.dart';
+import 'package:sfs_inversor/src/controller/notification_controller.dart';
+import 'package:sfs_inversor/src/pages/home/ui/sliver_body_items.dart';
+import 'package:sfs_inversor/src/pages/notifycation/ui/list_item_header_sliver.dart';
+import 'package:sfs_inversor/src/pages/notifycation/ui/sliver_body_items.dart';
+
+import 'package:sfs_inversor/src/styles/custom_styles.dart';
 import 'package:sfs_inversor/src/widgets/layouts/actionNotification.dart';
 import 'package:sfs_inversor/src/widgets/layouts/drawer.dart';
+import 'package:sfs_inversor/src/widgets/layouts/extras.dart';
+import 'package:sfs_inversor/src/widgets/widgettext.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 class Home extends StatefulWidget {
   static String id = '/home_page';
@@ -12,9 +23,63 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final bloc = HomeScrollController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    bloc.init();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    drawerController.toggle!(forceToggle: true);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    bloc.context = context;
+    return ZoomDrawerZ(
+      child: Scaffold(
+        key: bloc.scaffoldKey,
+        body: NotificationListener(
+          onNotification: (scroll) {
+            if (scroll is ScrollUpdateNotification) {
+              bloc.valueScroll.value = scroll.metrics.extentInside;
+            }
+            return true;
+          },
+          child: Scrollbar(
+            radius: const Radius.circular(8),
+            child: ValueListenableBuilder(
+                valueListenable: bloc.globalOffsetValue,
+                builder: (_, double valueCurrentScroll, __) {
+                  return CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    controller: bloc.scrollControllerGlobally,
+                    slivers: [
+                      _FlexibleSpaceBarHeader(
+                        valueScroll: valueCurrentScroll,
+                        bloc: bloc,
+                      ),
+                      SliverPersistentHeader(
+                        pinned: true,
+                        delegate: _HeaderSliver(bloc: bloc),
+                      ),
+                      SliverBodyItemsInversor(
+                        listItem: bloc.listInvest,
+                      ),
+                    ],
+                  );
+                }),
+          ),
+        ),
+        drawer: DrawerC(),
+      ),
+    );
+    /*return Scaffold(
       appBar: AppBar(
         actions: const [
           ActionNotification(),
@@ -22,7 +87,7 @@ class _HomeState extends State<Home> {
       ),
       body: body(),
       drawer: DrawerC(),
-    );
+    );*/
   }
 
   Widget body() {
@@ -513,4 +578,259 @@ class _HomeState extends State<Home> {
     );
   }
 */
+}
+
+const _maxHeaderExtent = 100.0;
+
+class _FlexibleSpaceBarHeader extends StatelessWidget {
+  const _FlexibleSpaceBarHeader({
+    Key? key,
+    required this.valueScroll,
+    required this.bloc,
+  }) : super(key: key);
+
+  final double valueScroll;
+  final HomeScrollController bloc;
+
+  @override
+  Widget build(BuildContext context) {
+    final sizeHeight = MediaQuery.of(context).size.height;
+    return SliverAppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      stretch: true,
+      expandedHeight: 140,
+      //pinned: true,
+      pinned: valueScroll < 90 ? true : false,
+      flexibleSpace: FlexibleSpaceBar(
+        collapseMode: CollapseMode.pin,
+        stretchModes: const [
+          StretchMode.zoomBackground,
+          StretchMode.blurBackground
+        ],
+        background: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
+              color: EstiloApp.primaryblue,
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  //height: 120.0,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 5),
+                ),
+                items: [1, 2, 3, 4, 5].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return InkWell(
+                        onTap: () => print('text $i'),
+                        child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            decoration: BoxDecoration(
+                                color: EstiloApp.colorwhite,
+                                borderRadius: BorderRadius.circular(9),
+                                boxShadow: kElevationToShadow[4]),
+                            child: Text(
+                              'text $i',
+                              style: TextStyle(fontSize: 16.0),
+                            )),
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
+            Positioned(
+              right: 10,
+              top: (sizeHeight + 25) - bloc.valueScroll.value,
+              child: ActionNotification(),
+            ),
+            Positioned(
+              left: 10,
+              top: (sizeHeight + 25) - bloc.valueScroll.value,
+              child: IconButton(
+                  onPressed: () => drawercontrol(), icon: Icon(Icons.menu)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _HeaderSliver extends SliverPersistentHeaderDelegate {
+  _HeaderSliver({required this.bloc});
+
+  final HomeScrollController bloc;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final percent = shrinkOffset / _maxHeaderExtent;
+    if (percent > 0.0) {
+      bloc.visibleHeader.value = true;
+    } else {
+      bloc.visibleHeader.value = false;
+    }
+    return Stack(
+      children: [
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: InkWell(
+            onTap: () => print(bloc.iss),
+            child: Container(
+              height: _maxHeaderExtent,
+              color: EstiloApp.primaryblue,
+              child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                //mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  szv(20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AnimatedOpacity(
+                          opacity: percent > 0.1 ? 1 : 0,
+                          duration: const Duration(milliseconds: 300),
+                          child: IconButton(
+                              onPressed: () => drawercontrol(),
+                              icon: Icon(Icons.menu)),
+                        ),
+                        AnimatedCrossFade(
+                            firstCurve: Curves.easeInOut,
+                            secondCurve: Curves.easeInOut,
+                            sizeCurve: Curves.easeInOut,
+                            reverseDuration: Duration(milliseconds: 300),
+                            firstChild: H3(
+                                color: EstiloApp.colorwhite,
+                                text:
+                                    S.of(context).notificationSamplePlural(1)),
+                            secondChild: H3(
+                                color: EstiloApp.colorwhite,
+                                text: 'Mas inversiones'),
+                            crossFadeState: percent > 0.01
+                                ? CrossFadeState.showFirst
+                                : CrossFadeState.showSecond,
+                            duration: Duration(milliseconds: 300)),
+                        AnimatedOpacity(
+                          opacity: percent > 0.01 ? 1 : 0,
+                          duration: const Duration(milliseconds: 300),
+                          child: ActionNotification(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 40,
+              child: AnimatedOpacity(
+                opacity: percent > 0.1 ? 1 : 0,
+                duration: const Duration(milliseconds: 400),
+                child: AnimatedSlide(
+                  duration: const Duration(milliseconds: 300),
+                  offset: Offset(0.0, percent > 0.01 ? -0.1 : -1.2),
+                  curve: Curves.easeIn,
+                  child: _listages(bloc: bloc),
+                ),
+              ),
+            ))
+      ],
+    );
+  }
+
+  @override
+  //double get maxExtent => bloc.visibleHeader.value ? _maxHeaderExtent : 5;
+  double get maxExtent => _maxHeaderExtent;
+  //  bloc.iss ? _maxHeaderExtent + 30 : _maxHeaderExtent;
+  @override
+  //double get minExtent => bloc.visibleHeader.value ? _maxHeaderExtent : 5;
+  //double get minExtent => _maxHeaderExtent;
+  double get minExtent => _maxHeaderExtent;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
+}
+
+class _listages extends StatelessWidget {
+  const _listages({Key? key, required this.bloc}) : super(key: key);
+  final HomeScrollController bloc;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Container(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+            IconButton(
+                onPressed: () {
+                  print('sss');
+                },
+                icon: Icon(Icons.first_page)),
+            IconButton(
+                onPressed: () {
+                  print('sss');
+                },
+                icon: Icon(Icons.arrow_back_ios_new_outlined)),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    20,
+                    (index) {
+                      return Container(
+                        margin: const EdgeInsets.only(
+                          top: 8,
+                          bottom: 8,
+                          right: 8,
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: index == 1 ? Colors.white : null,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Text(
+                          index.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: index == 1 ? Colors.black : Colors.white,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            IconButton(
+                onPressed: () {
+                  print('sss');
+                },
+                icon: Icon(Icons.last_page)),
+            IconButton(
+                onPressed: () {
+                  print('sss');
+                },
+                icon: Icon(Icons.arrow_forward_ios_outlined)),
+          ])),
+    );
+  }
 }

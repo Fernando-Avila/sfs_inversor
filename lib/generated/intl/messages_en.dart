@@ -20,17 +20,24 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(date, time) => "Date: ${date} Time: ${time}";
+  static String m0(howMany) =>
+      "${Intl.plural(howMany, one: 'Notification', other: 'Notifications')}";
 
-  static String m1(name) => "Welcome ${name}";
+  static String m1(date, time) => "Date: ${date} Time: ${time}";
 
-  static String m2(firstName, lastName) =>
+  static String m2(name) => "Welcome ${name}";
+
+  static String m3(firstName, lastName) =>
       "My name is ${lastName}, ${firstName} ${lastName}";
 
-  static String m3(howMany) =>
+  static String m4(howMany) =>
       "${Intl.plural(howMany, one: 'You have 1 message', other: 'You have ${howMany} messages')}";
 
-  static String m4(total) => "Total: ${total}";
+  static String m5(total) => " ${total}";
+
+  static String m6(percent) => "${percent} %";
+
+  static String m7(total) => "Remain ${total} ";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -39,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "I have read and agree to the terms and conditions"),
         "alreadyregistered":
             MessageLookupByLibrary.simpleMessage("Already registered?"),
+        "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirmpassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -46,7 +54,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "fieldrequired": MessageLookupByLibrary.simpleMessage("Field required"),
         "forgotpass":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
+        "id": MessageLookupByLibrary.simpleMessage("ID"),
         "invalidmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
+        "invest": MessageLookupByLibrary.simpleMessage("Invest"),
         "lastnames": MessageLookupByLibrary.simpleMessage("lastName"),
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "mail": MessageLookupByLibrary.simpleMessage("Email"),
@@ -56,19 +66,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notaccount":
             MessageLookupByLibrary.simpleMessage("You do not have an account?"),
+        "notificationSamplePlural": m0,
         "or": MessageLookupByLibrary.simpleMessage("Or"),
         "pageHomeListTitle":
             MessageLookupByLibrary.simpleMessage("Some localized strings:"),
-        "pageHomeSampleCurrentDateTime": m0,
-        "pageHomeSamplePlaceholder": m1,
-        "pageHomeSamplePlaceholdersOrdered": m2,
-        "pageHomeSamplePlural": m3,
-        "pageHomeSampleTotalAmount": m4,
+        "pageHomeSampleCurrentDateTime": m1,
+        "pageHomeSamplePlaceholder": m2,
+        "pageHomeSamplePlaceholdersOrdered": m3,
+        "pageHomeSamplePlural": m4,
+        "pageHomeSampleTotalAmount": m5,
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passworddontmatch":
             MessageLookupByLibrary.simpleMessage("Passwords don\'t match"),
+        "percentvalue": m6,
         "phone": MessageLookupByLibrary.simpleMessage("Contact"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "remain": m7,
         "signup": MessageLookupByLibrary.simpleMessage("Sign up"),
         "singup": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
@@ -76,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Swipe to review the terms and conditions"),
         "termconditions":
             MessageLookupByLibrary.simpleMessage("Terms and conditions"),
+        "tir": MessageLookupByLibrary.simpleMessage("% Interest"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome")
       };
 }

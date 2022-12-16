@@ -92,6 +92,46 @@ class S {
     );
   }
 
+  /// `Invest`
+  String get invest {
+    return Intl.message(
+      'Invest',
+      name: 'invest',
+      desc: 'Texto simple Invest',
+      args: [],
+    );
+  }
+
+  /// `ID`
+  String get id {
+    return Intl.message(
+      'ID',
+      name: 'id',
+      desc: 'Texto simple id',
+      args: [],
+    );
+  }
+
+  /// `Amount`
+  String get amount {
+    return Intl.message(
+      'Amount',
+      name: 'amount',
+      desc: 'Texto simple Amount',
+      args: [],
+    );
+  }
+
+  /// `% Interest`
+  String get tir {
+    return Intl.message(
+      '% Interest',
+      name: 'tir',
+      desc: 'Texto simple % Interes',
+      args: [],
+    );
+  }
+
   /// `Next`
   String get next {
     return Intl.message(
@@ -362,17 +402,53 @@ class S {
     );
   }
 
-  /// `Total: {total}`
+  /// `{howMany, plural, one{Notification} other{Notifications}}`
+  String notificationSamplePlural(int howMany) {
+    return Intl.plural(
+      howMany,
+      one: 'Notification',
+      other: 'Notifications',
+      name: 'notificationSamplePlural',
+      desc: '',
+      args: [howMany],
+    );
+  }
+
+  /// ` {total}`
   String pageHomeSampleTotalAmount(double total) {
     final NumberFormat totalNumberFormat = NumberFormat.currency(
-        locale: Intl.getCurrentLocale(), symbol: '€', decimalDigits: 2);
+        locale: Intl.getCurrentLocale(), symbol: '\$', decimalDigits: 2);
     final String totalString = totalNumberFormat.format(total);
 
     return Intl.message(
-      'Total: $totalString',
+      ' $totalString',
       name: 'pageHomeSampleTotalAmount',
       desc: '',
       args: [totalString],
+    );
+  }
+
+  /// `Remain {total} `
+  String remain(double total) {
+    final NumberFormat totalNumberFormat = NumberFormat.currency(
+        locale: Intl.getCurrentLocale(), symbol: '\$', decimalDigits: 2);
+    final String totalString = totalNumberFormat.format(total);
+
+    return Intl.message(
+      'Remain $totalString ',
+      name: 'remain',
+      desc: '',
+      args: [totalString],
+    );
+  }
+
+  /// `{percent} %`
+  String percentvalue(double percent) {
+    return Intl.message(
+      '$percent %',
+      name: 'percentvalue',
+      desc: '',
+      args: [percent],
     );
   }
 
