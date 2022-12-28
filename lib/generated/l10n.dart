@@ -102,6 +102,56 @@ class S {
     );
   }
 
+  /// `Investment`
+  String get investment {
+    return Intl.message(
+      'Investment',
+      name: 'investment',
+      desc: 'Texto simple Investment',
+      args: [],
+    );
+  }
+
+  /// `You'll get`
+  String get youllget {
+    return Intl.message(
+      'You\'ll get',
+      name: 'youllget',
+      desc: 'Texto simple You\'ll get',
+      args: [],
+    );
+  }
+
+  /// `Confirm investment`
+  String get confirmInvestment {
+    return Intl.message(
+      'Confirm investment',
+      name: 'confirmInvestment',
+      desc: 'Texto simple Confirm investment',
+      args: [],
+    );
+  }
+
+  /// `Purpose`
+  String get purpose {
+    return Intl.message(
+      'Purpose',
+      name: 'purpose',
+      desc: 'Texto simple Purpose',
+      args: [],
+    );
+  }
+
+  /// `Collected`
+  String get collected {
+    return Intl.message(
+      'Collected',
+      name: 'collected',
+      desc: 'Texto simple Collected',
+      args: [],
+    );
+  }
+
   /// `ID`
   String get id {
     return Intl.message(
@@ -411,6 +461,52 @@ class S {
       name: 'notificationSamplePlural',
       desc: '',
       args: [howMany],
+    );
+  }
+
+  /// `{howMany, plural, one{Month} other{Months}}`
+  String monthSamplePlural(int howMany) {
+    return Intl.plural(
+      howMany,
+      one: 'Month',
+      other: 'Months',
+      name: 'monthSamplePlural',
+      desc: '',
+      args: [howMany],
+    );
+  }
+
+  /// `Value out of rangeo`
+  String get outofrange {
+    return Intl.message(
+      'Value out of rangeo',
+      name: 'outofrange',
+      desc: 'Texto simple Valor fuera de rango para el validator',
+      args: [],
+    );
+  }
+
+  /// `Invalid value`
+  String get invalidvalue {
+    return Intl.message(
+      'Invalid value',
+      name: 'invalidvalue',
+      desc: 'Texto simple Invalid value para el validator',
+      args: [],
+    );
+  }
+
+  /// `{total}`
+  String currency(double total) {
+    final NumberFormat totalNumberFormat = NumberFormat.currency(
+        locale: Intl.getCurrentLocale(), symbol: '\$', decimalDigits: 2);
+    final String totalString = totalNumberFormat.format(total);
+
+    return Intl.message(
+      '$totalString',
+      name: 'currency',
+      desc: '',
+      args: [totalString],
     );
   }
 

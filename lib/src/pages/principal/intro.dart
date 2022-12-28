@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:sfs_inversor/generated/l10n.dart';
 import 'package:sfs_inversor/src/device/sharedpreferences.dart';
 import 'package:sfs_inversor/src/global/routes.dart';
-import 'package:sfs_inversor/src/pages/principal/splashScreen.dart';
+import 'package:sfs_inversor/src/widgets/exportwidgets.dart';
 import 'package:sfs_inversor/src/styles/custom_styles.dart';
-import 'package:sfs_inversor/src/widgets/cardanimated.dart';
-import 'package:sfs_inversor/src/widgets/layouts/buttons.dart';
-import 'package:sfs_inversor/src/widgets/layouts/extras.dart';
-import 'package:sfs_inversor/src/widgets/widgettext.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 
 class Intro extends StatefulWidget {

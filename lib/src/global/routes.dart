@@ -36,7 +36,7 @@ class Routes {
   String firstinvest = '/firstinvest';
   Map<String, WidgetBuilder> routes() {
     return {
-      SplashScreen.id: (context) => SplashScreen(),
+      SplashScreen.id: (context) => const SplashScreen(),
       intro: (context) => Intro(),
       login: (context) => Login(),
       register: (context) => Register(),

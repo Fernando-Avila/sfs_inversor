@@ -29,12 +29,35 @@ String? passconfirm(String value, context, String pass, String passverify) {
   return null;
 }
 
+String? doublevalidator(String value, context, max, min) {
+  if (value.isEmpty) return 'Campo obligatorio';
+  if (double.tryParse(value) == null) {
+    return S.of(context).invalidvalue;
+  }
+  var val = double.parse(value);
+  if (val < 1.0 || val > max) {
+    return S.of(context).outofrange;
+  }
+  return null;
+}
+
 double percent(max, value) {
   double val = (value / max) * 100;
-  return val * 0.01;
+  String valS = val.toStringAsFixed(2);
+  double valD = double.parse(valS);
+  return valD;
 }
 
 double diference(max, value) {
   double val = max - value + 0.0;
   return val;
+}
+
+double calctir(double monto, double tasaAnual, int meses) {
+  // Convertir la tasa de interés anual a una tasa mensual
+  double tasaMensual = tasaAnual / 100 / 12;
+  // Calcular el interés mensual
+  double interesMensual = monto * tasaMensual;
+  // Calcular el interés total a pagar
+  return interesMensual * meses;
 }

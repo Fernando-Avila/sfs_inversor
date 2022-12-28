@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sfs_inversor/generated/l10n.dart';
 import 'package:sfs_inversor/src/bloc/auth/auth_bloc.dart';
+import 'package:sfs_inversor/src/bloc/bloc/investment_bloc.dart';
+import 'package:sfs_inversor/src/bloc/loan/loan_bloc.dart';
+
 import 'package:sfs_inversor/src/bloc/notification/notification_bloc.dart';
 import 'package:sfs_inversor/src/bloc/terms/terms_bloc.dart';
 import 'package:sfs_inversor/src/bloc/theme/theme_bloc.dart';
@@ -43,6 +46,12 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => NotificationBloc(),
+        ),
+        BlocProvider(
+          create: (context) => LoanBloc(),
+        ),
+        BlocProvider(
+          create: (context) => InvestmentBloc(),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeInitial>(

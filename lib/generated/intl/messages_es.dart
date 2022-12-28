@@ -20,24 +20,29 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
-  static String m0(howMany) =>
+  static String m0(total) => "${total}";
+
+  static String m1(howMany) =>
+      "${Intl.plural(howMany, one: 'Mes', other: 'Meses')}";
+
+  static String m2(howMany) =>
       "${Intl.plural(howMany, one: 'Notificación', other: 'Notificaciones')}";
 
-  static String m1(date, time) => "Date: ${date} Time: ${time}";
+  static String m3(date, time) => "Date: ${date} Time: ${time}";
 
-  static String m2(name) => "Welcome ${name}";
+  static String m4(name) => "Welcome ${name}";
 
-  static String m3(firstName, lastName) =>
+  static String m5(firstName, lastName) =>
       "My name is ${lastName}, ${firstName} ${lastName}";
 
-  static String m4(howMany) =>
+  static String m6(howMany) =>
       "${Intl.plural(howMany, one: 'You have 1 message', other: 'You have ${howMany} messages')}";
 
-  static String m5(total) => " ${total}";
+  static String m7(total) => " ${total}";
 
-  static String m6(percent) => "${percent} %";
+  static String m8(percent) => "${percent} %";
 
-  static String m7(total) => "Quedán ${total} ";
+  static String m9(total) => "Por Invertir ${total} ";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -49,41 +54,51 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Ya estás registrado?"),
         "amount": MessageLookupByLibrary.simpleMessage("Monto"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "collected": MessageLookupByLibrary.simpleMessage("Recolectado"),
+        "confirmInvestment":
+            MessageLookupByLibrary.simpleMessage("Confirmar inversión"),
         "confirmpassword":
             MessageLookupByLibrary.simpleMessage("Confirmar Contraseña"),
         "continu": MessageLookupByLibrary.simpleMessage("Continuar"),
+        "currency": m0,
         "fieldrequired":
             MessageLookupByLibrary.simpleMessage("Campo Requerido"),
         "forgotpass":
             MessageLookupByLibrary.simpleMessage("¿Olvido su contraseña?"),
         "id": MessageLookupByLibrary.simpleMessage("ID"),
         "invalidmail": MessageLookupByLibrary.simpleMessage("Correo inválido"),
+        "invalidvalue": MessageLookupByLibrary.simpleMessage("Valor no válido"),
         "invest": MessageLookupByLibrary.simpleMessage("Invertir"),
+        "investment": MessageLookupByLibrary.simpleMessage("Inversión"),
         "lastnames": MessageLookupByLibrary.simpleMessage("Apellidos"),
         "login": MessageLookupByLibrary.simpleMessage("Inicia sesión"),
         "mail": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
         "minimumpassword":
             MessageLookupByLibrary.simpleMessage("8 caracteres mínimo"),
+        "monthSamplePlural": m1,
         "names": MessageLookupByLibrary.simpleMessage("Nombres"),
         "next": MessageLookupByLibrary.simpleMessage("Siguiente"),
         "notaccount":
             MessageLookupByLibrary.simpleMessage("¿No tienes cuenta?"),
-        "notificationSamplePlural": m0,
+        "notificationSamplePlural": m2,
         "or": MessageLookupByLibrary.simpleMessage("O"),
+        "outofrange":
+            MessageLookupByLibrary.simpleMessage("Valor fuera de rango"),
         "pageHomeListTitle":
             MessageLookupByLibrary.simpleMessage("Some localized strings:"),
-        "pageHomeSampleCurrentDateTime": m1,
-        "pageHomeSamplePlaceholder": m2,
-        "pageHomeSamplePlaceholdersOrdered": m3,
-        "pageHomeSamplePlural": m4,
-        "pageHomeSampleTotalAmount": m5,
+        "pageHomeSampleCurrentDateTime": m3,
+        "pageHomeSamplePlaceholder": m4,
+        "pageHomeSamplePlaceholdersOrdered": m5,
+        "pageHomeSamplePlural": m6,
+        "pageHomeSampleTotalAmount": m7,
         "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passworddontmatch": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
-        "percentvalue": m6,
+        "percentvalue": m8,
         "phone": MessageLookupByLibrary.simpleMessage("Contacto"),
+        "purpose": MessageLookupByLibrary.simpleMessage("Objetivo"),
         "register": MessageLookupByLibrary.simpleMessage("Registro"),
-        "remain": m7,
+        "remain": m9,
         "signup": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "singup": MessageLookupByLibrary.simpleMessage("Registrate"),
         "skip": MessageLookupByLibrary.simpleMessage("Omitir"),
@@ -92,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "termconditions":
             MessageLookupByLibrary.simpleMessage("Términos y condiciones"),
         "tir": MessageLookupByLibrary.simpleMessage("% Interés"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido")
+        "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido"),
+        "youllget": MessageLookupByLibrary.simpleMessage("Obtendrás")
       };
 }

@@ -98,8 +98,14 @@ class BtnDegraded extends StatelessWidget {
   final Widget widget;
   double? width;
   double? height;
+  double? radius;
   BtnDegraded(
-      {Key? key, this.metod, required this.widget, this.width, this.height})
+      {Key? key,
+      this.metod,
+      required this.widget,
+      this.width,
+      this.height,
+      this.radius})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -115,7 +121,7 @@ class BtnDegraded extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: EstiloApp.horizontalgradientpurplepink,
             boxShadow: kElevationToShadow[9],
-            borderRadius: BorderRadius.circular(60)),
+            borderRadius: BorderRadius.circular(radius ?? 60)),
         child: Center(child: widget),
       ),
     );

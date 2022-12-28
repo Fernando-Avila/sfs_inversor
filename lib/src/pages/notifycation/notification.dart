@@ -53,10 +53,10 @@ class _NotificationsState extends State<Notifications> {
                     physics: const BouncingScrollPhysics(),
                     controller: bloc.scrollControllerGlobally,
                     slivers: [
-                      _FlexibleSpaceBarHeader(
+                      /*_FlexibleSpaceBarHeader(
                         valueScroll: valueCurrentScroll,
                         bloc: bloc,
-                      ),
+                      ),*/
                       SliverPersistentHeader(
                         pinned: true,
                         delegate: _HeaderSliver(bloc: bloc),

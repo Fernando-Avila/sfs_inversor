@@ -10,22 +10,25 @@ import 'package:sfs_inversor/src/widgets/layouts/photo.dart';
 import 'package:sfs_inversor/src/widgets/widgettext.dart';
 
 final drawerController = ZoomDrawerController();
-void drawercontrol() {
-  if (drawerController.isOpen!()) {
-    drawerController.close!();
+void drawercontrol(ZoomDrawerController drawer) {
+  if (drawer.isOpen!()) {
+    drawer.close!();
   } else {
-    drawerController.open!();
+    drawer.open!();
   }
 }
 
 class ZoomDrawerZ extends StatelessWidget {
-  const ZoomDrawerZ({Key? key, required this.child}) : super(key: key);
+  const ZoomDrawerZ(
+      {Key? key, required this.child, required this.drawerController})
+      : super(key: key);
   final Widget child;
+  final ZoomDrawerController drawerController;
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
       controller: drawerController,
-      menuScreen: DrawerC(),
+      menuScreen: const DrawerC(),
       borderRadius: 24,
       mainScreenScale: 0.08,
       showShadow: true,
@@ -128,7 +131,7 @@ class DrawerC extends StatelessWidget {
                           onDetailsPressed: () {
                             Navigator.push(
                                 context,
-                                Routes().Push(Routes().login,
+                                Routes().Push(Routes().account,
                                     AnimatedPage.slideright, 300));
                           },
                           accountEmail: null,

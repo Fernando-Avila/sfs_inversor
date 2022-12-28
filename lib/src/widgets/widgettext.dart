@@ -151,7 +151,7 @@ class H3 extends StatelessWidget {
 }
 
 class t1 extends StatelessWidget {
-  final String text;
+  final dynamic text;
   final MaterialColor? color;
   final FontStyle? fontStyle;
   final FontWeight? fontWeight;
@@ -164,7 +164,7 @@ class t1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text.toString(),
       style: TextStyle(
           fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
           fontWeight:

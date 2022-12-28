@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:sfs_inversor/src/models/investment_model.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
+import 'package:sfs_inversor/src/models/Loan_model.dart';
 import 'package:sfs_inversor/src/models/notifictions_model.dart';
 
 class MyHeader {
@@ -13,15 +14,44 @@ class MyHeader {
   final bool visible;
 }
 
+class HeaderCard {
+  const HeaderCard({
+    required this.title,
+    required this.path,
+  });
+
+  final String title;
+  final String path;
+}
+
+final headercards = [
+  HeaderCard(
+      title: lorem(paragraphs: 1, words: 4),
+      path: 'assets/icons/degradado/iconcalc.png'),
+  HeaderCard(
+      title: lorem(paragraphs: 1, words: 4),
+      path: 'assets/icons/degradado/iconcheck.png'),
+  HeaderCard(
+      title: lorem(paragraphs: 1, words: 4),
+      path: 'assets/icons/degradado/iconsend.png'),
+  HeaderCard(
+      title: lorem(paragraphs: 1, words: 4),
+      path: 'assets/icons/degradado/iconsocio.png'),
+  HeaderCard(
+      title: lorem(paragraphs: 1, words: 4),
+      path: 'assets/icons/degradado/iconlogo.png'),
+];
+
 class HomeScrollController {
   late BuildContext context;
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   //List of products - Lista de productos
-  late List<Investment> listInvest = investments;
+  late List<Loan> listInvest = loans;
 
   //list of offSet values - Lista de valores offSet de los item
   List<double> listOffSetItemHeader = [];
-
+  late int listlenght = 0;
+  var indexselect = ValueNotifier<int>(0);
   //Header notifier - Notificaciones de cabereca
   final headerNotifier = ValueNotifier<MyHeader?>(null);
 
@@ -48,14 +78,27 @@ class HomeScrollController {
   void init() {
     scrollControllerGlobally = ScrollController();
     scrollControllerItemHeader = ScrollController();
-    scrollControllerGlobally.addListener(_listenToScrollChange);
+    indexselect.addListener(_listenToScrollChange);
     visibleHeader.addListener(_listenVisibleHeader);
     visibleHeader.addListener(() => iss = visibleHeader.value);
+    indexselect.addListener(_listenHeaderNotifier);
   }
 
   void _listenVisibleHeader() {
     if (visibleHeader.value) {
       headerNotifier.value = const MyHeader(visible: false, index: 0);
+    }
+  }
+
+  void _listenHeaderNotifier() {
+    print('ha cambiado el index');
+    for (var i = 0; i < listlenght; i++) {
+      scrollAnimationHorizontal(index: i);
+    }
+    if (visibleHeader.value) {
+      for (var i = 0; i < listlenght; i++) {
+        scrollAnimationHorizontal(index: i);
+      }
     }
   }
 
@@ -75,6 +118,11 @@ class HomeScrollController {
   }
 
   void scrollAnimationHorizontal({required int index}) {
+    /*scrollControllerItemHeader.animateTo(
+      listOffSetItemHeader[2] - 16,
+      duration: const Duration(milliseconds: 500),
+      curve: goingDown.value ? Curves.bounceOut : Curves.fastOutSlowIn,
+    );*/
     if (headerNotifier.value?.index == index && headerNotifier.value!.visible) {
       scrollControllerItemHeader.animateTo(
         listOffSetItemHeader[headerNotifier.value!.index] - 16,

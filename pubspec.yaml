@@ -39,7 +39,10 @@ dependencies:
   flutter_lorem: ^2.0.0
   carousel_slider: ^4.2.1
   flutter_zoom_drawer: ^3.0.3
-  sleek_circular_slider: ^2.0.1
+  sleek_circular_slider: ^2.0.1  
+  circular_seek_bar: ^1.0.0
+  money_input_formatter: ^2.0.0
+  fl_chart: ^0.55.2
 #Funcional Dependencies
   flutter_localizations:
     sdk: flutter

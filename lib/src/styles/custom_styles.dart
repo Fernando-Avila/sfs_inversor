@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class EstiloApp {
   static MaterialColor primaryblue =
@@ -10,7 +11,7 @@ class EstiloApp {
 
   static MaterialColor primarypink =
       MaterialColor(_primarypinkValue, <int, Color>{
-    400: const Color.fromARGB(199, 227, 53, 91),
+    400: Color.fromARGB(0, 227, 53, 91),
     500: const Color.fromARGB(199, 227, 53, 91),
     600: const Color.fromARGB(199, 227, 53, 91),
     700: Color.fromARGB(103, 227, 53, 91),
@@ -115,6 +116,26 @@ class EstiloApp {
       Colors.transparent,
     ],
   );
+
+  static CustomSliderWidths customWidthCirculaSlider = CustomSliderWidths(
+    trackWidth: 6,
+    handlerSize: 4,
+    progressBarWidth: 15,
+    shadowWidth: 22,
+  );
+
+  static CustomSliderColors customColorCirculaSlider = CustomSliderColors(
+      progressBarColors: [EstiloApp.primarypurple, EstiloApp.primarypink],
+      dynamicGradient: true,
+      hideShadow: false,
+      shadowMaxOpacity: 0.3,
+      shadowColor: EstiloApp.primarypink,
+      trackColors: [
+        EstiloApp.primarypink[700]!,
+        EstiloApp.primarypurple,
+        EstiloApp.primarypink[700]!,
+      ],
+      shadowStep: 2);
   static BoxDecoration decorationBoxwhite = BoxDecoration(
       color: EstiloApp.colorwhite,
       boxShadow: kElevationToShadow[9],

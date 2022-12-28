@@ -23,6 +23,26 @@
   "description": "Texto simple Invest"
 },
 
+"investment": "Investment",
+"@investment": {
+  "description": "Texto simple Investment"
+},
+"youllget": "You'll get",
+"@youllget": {
+  "description": "Texto simple You'll get"
+},
+"confirmInvestment": "Confirm investment",
+"@confirmInvestment": {
+  "description": "Texto simple Confirm investment"
+},
+"purpose": "Purpose",
+"@purpose": {
+  "description": "Texto simple Purpose"
+},
+"collected": "Collected",
+"@collected": {
+  "description": "Texto simple Collected"
+},
 "id": "ID",
 "@id": {
   "description": "Texto simple id"
@@ -159,6 +179,37 @@
     }
   }
 },
+"monthSamplePlural": "{howMany, plural, one{Month} other{Months}}",
+"@monthSamplePlural": {
+  "placeholders": {
+    "howMany": {
+      "type": "int"
+    }
+  }
+},
+"outofrange": "Value out of rangeo",
+"@outofrange": {
+  "description": "Texto simple Valor fuera de rango para el validator"
+},
+"invalidvalue": "Invalid value",
+"@invalidvalue": {
+  "description": "Texto simple Invalid value para el validator"
+},
+
+"currency": "{total}",
+  "@currency": {
+    "placeholders": {
+      "total": {
+        "type": "double",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "$",
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+
   "pageHomeSampleTotalAmount": " {total}",
   "@pageHomeSampleTotalAmount": {
     "placeholders": {
