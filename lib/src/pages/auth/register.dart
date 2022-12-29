@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sfs_inversor/generated/l10n.dart';
@@ -198,12 +200,24 @@ class _RegisterState extends State<Register> {
                               color: EstiloApp.colorwhite,
                             ),
                           ),
-                          secondChild: BtnDegraded(
-                            metod: () => _con.RegisterUser(),
-                            widget: t1(
-                              text: S.of(context).signup.toUpperCase(),
-                              color: EstiloApp.colorwhite,
-                            ),
+                          secondChild: Stack(
+                            children: [
+                              BtnDegraded(
+                                metod: () => _con.RegisterUser(),
+                                widget: t1(
+                                  text: S.of(context).signup.toUpperCase(),
+                                  color: EstiloApp.colorwhite,
+                                ),
+                              ),
+                              BackdropFilter(
+                                  filter:
+                                      ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                  child: Container(
+                                    height: 50,
+                                    //width: 50,
+                                    color: EstiloApp.colorblack,
+                                  ))
+                            ],
                           ),
                           crossFadeState: state.status
                               ? CrossFadeState.showSecond
